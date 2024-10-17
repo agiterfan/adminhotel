@@ -6,20 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('_booking', function (Blueprint $table) {
+        Schema::create('kamar', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ID_Booking')->nullable();
-            $table->int('ID_User')->nullable();
-            $table->int('no_kamar')->nullable();
-            $table->date('tgl_checkin');
-            $table->date('tgl_checkout');
-            $table->boolean('status_booking');
+            $table->integer('No_Kamar');
+            $table->string('Jenis_Kamar')->nullable();
+            $table->integer('Lantai');
+            $table->boolean('Status_Kamar');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_booking');
+        Schema::dropIfExists('kamar');
     }
 };
