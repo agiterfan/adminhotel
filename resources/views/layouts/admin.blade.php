@@ -58,7 +58,7 @@
 
         <!-- Nav Item - Room -->
         <li class="nav-item {{ Nav::isRoute('room') }}">
-            <a class="nav-link" href="/room">
+            <a class="nav-link" href="{{ route('room.index') }}">
                 <i class="fas fa-fw fa-building"></i>
                 <span>{{ __('Room') }}</span>
             </a>

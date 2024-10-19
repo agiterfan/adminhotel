@@ -23,17 +23,51 @@
         </div>
     @endif
 
-@foreach($kamars as $kamar)
-    <div>
-        <h3>{{ $kamar->No_Kamar }}</h3>
-        <p>{{ $kamar->Jenis_Kamar }}</p>
-        <a href="{{ url('room/'.$kamars->id.'/edit') }}">Edit</a>
-        <form action="{{ url('room/'.$kamars->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-right mb-2">
+                <a class="btn btn-success" href="{{ route('room.create') }}"> Create New</a>
+            </div>
+        </div>
     </div>
-@endforeach
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+    <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>No</th>
+                    <th>Kamar</th>
+                    <th>Jenis Kamar</th>
+                    <th width="280px">Action</th>
+                </tr>
+                @forelse($kamars as $kamar)
+                <tr>
+                    <td>{{ $kamar+1 }}</td>
+                    <td>{{ $kamar->kamar }}</td>
+                    <td>{{ $kamar->jenis_kamar }}</td>
+                    <td>
+                        <form action="{{ url('room/'.$kamars->id) }}" method="POST">
+
+                            <a href="{{ url('room/'.$kamars->id.'/edit') }}">Edit</a>
+                            
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center">
+                        Tidak Terdapat Data Kamar
+                    </td>
+                </tr>
+                @endforelse   
+            </table>     
+    </div>
+    
 @endsection

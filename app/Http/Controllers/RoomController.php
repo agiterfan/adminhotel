@@ -18,7 +18,8 @@ class RoomController extends Controller
     public function index()
     {
         $kamars = Kamar::get();
-        return view('Room.index', compact('kamars'));
+        $jenis_kamars = Jenis_Kamar::get();
+        return view('Room.index', ['kamars' => $kamars], ['jenis_kamars' => $jenis_kamars]);
     }
 
     /**
@@ -26,11 +27,11 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $data = DB::table('kamar')
-        ->join('jenis_kamar', 'jenis_kamar.Jenis_Kamar', '=', 'kamar.Jenis_Kamar')
+        $data = DB::table('kamars')
+        ->join('jenis_kamars', 'jenis_kamars.Jenis_Kamar', '=', 'kamars.Jenis_Kamar')
         ->get([
-            'kamar.*',
-            'jenis_kamar.Jenis_Kamar'
+            'kamars.*',
+            'jenis_kamars.Jenis_Kamar'
         ]);
         return view('Room.display', ["data" => $data]);
     }
