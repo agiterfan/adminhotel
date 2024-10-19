@@ -57,8 +57,8 @@
         </div>
 
         <!-- Nav Item - Room -->
-        <li class="nav-item {{ Nav::isRoute('profile') }}">
-            <a class="nav-link" href="{{ route('profile') }}">
+        <li class="nav-item {{ Nav::isRoute('room') }}">
+            <a class="nav-link" href="/room">
                 <i class="fas fa-fw fa-building"></i>
                 <span>{{ __('Room') }}</span>
             </a>
