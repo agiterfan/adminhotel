@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'telepon'
     ];
 
     /**
@@ -49,7 +49,7 @@ class User extends Authenticatable
             return "{$this->name}";
         }
 
-        return "{$this->name} {$this->last_name}";
+        return "{$this->name}";
     }
 
     /**
