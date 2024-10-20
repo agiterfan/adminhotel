@@ -36,12 +36,13 @@ class JenisKamarController extends Controller
      */
     public function store(Request $request)
     {
-        $data = JenisKamar::create($request->all());
-        return response()->json([
-            'data' => $data,
-            'message' => 'Berhasil menambahkan data Kamar',
-            'status' => $data ? 200 : 400,
+        JenisKamar::create([
+            'Jenis_Kamar'   => $request->Jenis_Kamar,
+            'Fasilitas'     => $request->Fasilitas,
+            'Harga'         => $request->Harga
         ]);
+
+        return redirect()->route('roomType.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -58,10 +59,8 @@ class JenisKamarController extends Controller
     public function edit(string $id)
     {
         $data = JenisKamar::findOrFail($id);
-        return response()->json([
-            'data' => $data,
-            'status' => $data ? 200 : 400,
-        ]);
+        
+        return view('RoomType.update', compact('data'));
     }
 
     /**
@@ -70,13 +69,14 @@ class JenisKamarController extends Controller
     public function update(Request $request, string $id)
     {
         $data = JenisKamar::findOrFail($id);
-        $data->update($request->all());
 
-        return response()->json([
-            'data' => $data,
-            'message' => 'Berhasil mengubah data Kamar',
-            'status' => $data ? 200 : 400,
+        $data->update([
+            'Jenis_Kamar'   => $request->Jenis_Kamar,
+            'Fasilitas'     => $request->Fasilitas,
+            'Harga'         => $request->Harga
         ]);
+
+        return redirect()->route('roomType.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -85,10 +85,6 @@ class JenisKamarController extends Controller
     public function destroy(string $id)
     {
         JenisKamar::destroy($id);
-        return response()->json([
-            'data' => $id,
-            'message' => 'Berhasil menghapus data Kamar',
-            'status' => 200,
-        ]);
+        return redirect()->route('roomType.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

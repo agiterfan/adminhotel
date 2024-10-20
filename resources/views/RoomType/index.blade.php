@@ -45,16 +45,16 @@
                     <th>Harga</th>
                     <th width="280px">Action</th>
                 </tr>
-                @forelse($jeniskamars as $jeniskamar)
+                @forelse ($jeniskamars as $key => $jeniskamar)
                 <tr>
-                    <td>{{ $jeniskamar+1 }}</td>
-                    <td>{{ $jeniskamar->jenis_kamar }}</td>
-                    <td>{{ $jeniskamar->fasilitas }}</td>
-                    <td>{{ $jeniskamar->harga }}</td>
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $jeniskamar->Jenis_Kamar }}</td>
+                    <td>{{ $jeniskamar->Fasilitas }}</td>
+                    <td>{{ $jeniskamar->Harga }}</td>
                     <td>
-                        <form action="{{ url('roomType/'.$jeniskamar->id) }}" method="POST">
-
-                            <a href="{{ url('roomType/'.$jeniskamar->id.'/edit') }}">Edit</a>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('roomType.destroy', $jeniskamar->id) }}" method="POST">
+                            <a href="{{ route('roomType.show', $jeniskamar->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                            <a href="{{ route('roomType.edit', $jeniskamar->id) }}">Edit</a>
                             
                             @csrf
                             @method('DELETE')

@@ -28,12 +28,13 @@ class RoomController extends Controller
     public function create()
     {
         $data = DB::table('kamars')
-        ->join('jeniskamars', 'jeniskamars.Jenis_Kamar', '=', 'kamars.Jenis_Kamar')
+        ->join('jenis_kamars', 'jenis_kamars.Jenis_Kamar', '=', 'kamars.Jenis_Kamar')
         ->get([
             'kamars.*',
-            'jeniskamars.Jenis_Kamar'
+            'jenis_kamars.Jenis_Kamar'
         ]);
-        return view('Room.display', ["data" => $data]);
+        $jeniskamars = JenisKamar::get();
+        return view('Room.display', ["data" => $data], ['jeniskamars' => $jeniskamars]);
     }
 
     /**

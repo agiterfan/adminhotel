@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Room Type Detail') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Update Room Type') }}</h1>
 
     @if (session('success'))
         <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -32,11 +32,11 @@
                 <div class="card-body">
 
                     <form method="POST" action="{{ route('roomType.store') }}" enctype="multipart/form-data">
-                        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         @csrf
 
-                        <input type="hidden" name="_method" value="POST">
+                        <input type="hidden" name="_method" value="PUT">
 
                         <h6 class="heading-small text-muted mb-4">Rooms information</h6>
 
