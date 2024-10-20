@@ -26,6 +26,7 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 /*==================ROOM====================*/
 Route::resource('room', 'RoomController');
+Route::resource('roomType', 'JenisKamarController');
 
 
 Route::get('/about', function () {

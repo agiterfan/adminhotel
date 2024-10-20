@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\JenisKamar;
+use Illuminate\Support\Facades\DB;
 
 class JenisKamarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,7 +15,8 @@ class JenisKamarController extends Controller
     
     public function index()
     {
-        //
+        $jeniskamars = JenisKamar::get();
+        return view('RoomType.index', ['jeniskamars' => $jeniskamars]);
     }
 
     /**
@@ -25,7 +24,11 @@ class JenisKamarController extends Controller
      */
     public function create()
     {
-        //
+        $data = DB::table('jenis_Kamars')
+        ->get([
+            'jenis_kamars.*',
+        ]);
+        return view('RoomType.display', ["data" => $data]);
     }
 
     /**
@@ -33,7 +36,12 @@ class JenisKamarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = JenisKamar::create($request->all());
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil menambahkan data Kamar',
+            'status' => $data ? 200 : 400,
+        ]);
     }
 
     /**
@@ -49,7 +57,11 @@ class JenisKamarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = JenisKamar::findOrFail($id);
+        return response()->json([
+            'data' => $data,
+            'status' => $data ? 200 : 400,
+        ]);
     }
 
     /**
@@ -57,7 +69,14 @@ class JenisKamarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = JenisKamar::findOrFail($id);
+        $data->update($request->all());
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Berhasil mengubah data Kamar',
+            'status' => $data ? 200 : 400,
+        ]);
     }
 
     /**
@@ -65,6 +84,11 @@ class JenisKamarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        JenisKamar::destroy($id);
+        return response()->json([
+            'data' => $id,
+            'message' => 'Berhasil menghapus data Kamar',
+            'status' => 200,
+        ]);
     }
 }

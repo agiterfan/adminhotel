@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
          \App\Models\User::factory()->create([
-             'name' => 'adminini hotel',
              'ID_User' => 'admininihotel',
-             'password' => '1111',
+             'name' => 'adminini hotel',
              'email' => 'test@example.com',
+             'password' => '1111',
              'telepon' => '081123456789'
          ]);
     }

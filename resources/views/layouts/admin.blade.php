@@ -64,6 +64,14 @@
             </a>
         </li>
 
+        <!-- Nav Item - Room Type-->
+        <li class="nav-item {{ Nav::isRoute('roomType') }}">
+            <a class="nav-link" href="{{ route('roomType.index') }}">
+                <i class="fas fa-fw fa-bed"></i>
+                <span>{{ __('Room Type') }}</span>
+            </a>
+        </li>
+
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">
             <a class="nav-link" href="{{ route('profile') }}">

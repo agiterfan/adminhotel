@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Jenis_Kamar;
+use App\Models\JenisKamar;
 use Illuminate\Http\Request;
 use App\Models\Kamar;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +18,8 @@ class RoomController extends Controller
     public function index()
     {
         $kamars = Kamar::get();
-        $jenis_kamars = Jenis_Kamar::get();
-        return view('Room.index', ['kamars' => $kamars], ['jenis_kamars' => $jenis_kamars]);
+        $jeniskamars = JenisKamar::get();
+        return view('Room.index', ['kamars' => $kamars], ['jeniskamars' => $jeniskamars]);
     }
 
     /**
@@ -28,10 +28,10 @@ class RoomController extends Controller
     public function create()
     {
         $data = DB::table('kamars')
-        ->join('jenis_kamars', 'jenis_kamars.Jenis_Kamar', '=', 'kamars.Jenis_Kamar')
+        ->join('jeniskamars', 'jeniskamars.Jenis_Kamar', '=', 'kamars.Jenis_Kamar')
         ->get([
             'kamars.*',
-            'jenis_kamars.Jenis_Kamar'
+            'jeniskamars.Jenis_Kamar'
         ]);
         return view('Room.display', ["data" => $data]);
     }

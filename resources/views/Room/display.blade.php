@@ -51,8 +51,8 @@
                                         <label class="form-control-label" for="Jenis_Kamar">Jenis Kamar<span class="small text-danger">*</span></label>
                                         <select name="Jenis_Kamar" id="Jenis_Kamar" class="form-control">
                                             <option value="" >--Silahkan Pilih Jenis Kamar--</option>
-                                            @foreach ($data as $data)
-                                            <option value="{{ $jenis_kamar->id }}">{{ $jenis_kamar->Jenis_Kamar }}</option>
+                                            @foreach ($jeniskamars as $jeniskamar)
+                                            <option value="{{ $jeniskamar->id }}">{{ $jeniskamar->Jenis_Kamar }}</option>
                                             @endforeach
                                         </select>
                                         
@@ -111,3 +111,7 @@
     </div>
 
 @endsection
+
+@push('page-scripts')
+<script src="{{asset('js/user.js')}}"></script>
+@endpush
